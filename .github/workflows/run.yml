@@ -1,0 +1,24 @@
+name: Auto Oman Radar ZOOM GIF Update
+
+on:
+  schedule:
+    - cron: '45 */1 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  run-oman-bot:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Libraries
+      run: pip install requests Pillow
+
+    - name: Execute Script
+      run: python radar.py
